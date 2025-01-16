@@ -29,12 +29,30 @@
   <!-- end transaction summory and tools section -->
 
   <!-- Start transactions section -->
-  <section v-if="!pending">
-    <div v-for="(transactionsOnDay, date) in byDate" :key="date" class="mb-10">
-      <DailyTransactionSummary :date="date" :transactions="transactionsOnDay" />
-      <Transaction v-for="transaction in transactionsOnDay" :key="transaction.id" :transaction="transaction" @deleted="refresh()" @edited="refresh()"/>
-    </div>
-  </section>
+  <section v-if="!pending" class="space-y-10">
+  <div
+    v-for="(transactionsOnDay, date) in byDate"
+    :key="date"
+    class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow">
+    
+    <!-- Keep the Date Summary as is -->
+    <DailyTransactionSummary
+      :date="date"
+      :transactions="transactionsOnDay"
+      class="text-lg font-bold text-gray-800 mb-4"
+    />
+
+    <!-- List of Transactions -->
+    <Transaction
+      v-for="transaction in transactionsOnDay"
+      :key="transaction.id"
+      :transaction="transaction"
+      class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border-l-4 border-blue-500 mb-4"
+      @deleted="refresh()"
+      @edited="refresh()"
+    />
+  </div>
+</section>
 
   <section v-else>
     <USkeleton class="h-8 w-full mb-2" v-for="i in 4" :key="i"/>
