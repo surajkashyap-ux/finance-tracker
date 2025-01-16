@@ -6,23 +6,18 @@
       </template> 
 
       <UForm :state="state" :schema="schema" ref="form" @submit="save">
-        <!-- Transaction type -->
         <UFormGroup :required="true" label="Transaction Type" name="type" class="mb-4">
           <USelect :disabled="isEditing" placeholder="Select the transaction type" :options="types" v-model="state.type"/>
         </UFormGroup>
-        <!-- Amount -->
         <UFormGroup label="Amount" :required="true" name="amount" class="mb-4">
           <UInput type="number" placeholder="Amount" v-model.number="state.amount"/>
         </UFormGroup>
-        <!-- Transaction date aka created_at -->
         <UFormGroup label="Transaction date" :required="true" name="created_at" class="mb-4">
           <UInput type="date" icon="i-heroicons-calendar-days-20-solid" v-model="state.created_at"/>
         </UFormGroup>
-        <!-- Description -->
         <UFormGroup label="Description" hint="Optional" name="description" class="mb-4">
           <UInput placeholder="Description" v-model="state.description"/>
         </UFormGroup>
-        <!-- Category -->
         <UFormGroup :required="true" label="Category" name="category" class="mb-4" v-if="state.type === 'Expense'">
           <USelect placeholder="Category" :options="categories" v-model="state.category"/>
         </UFormGroup>
