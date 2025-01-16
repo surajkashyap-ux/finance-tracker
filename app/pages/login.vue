@@ -19,7 +19,7 @@
     </template>
 
     <div class="text-center">
-      <p>We have sent an email to <strong>lorem@hotmail.it</strong> with a link to sign-in</p>
+      <p>We have sent an email with a link to sign-in</p>
       <p>
         <strong>Important: </strong>The link will expire in 5 minutes !
       </p>

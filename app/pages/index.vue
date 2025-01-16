@@ -6,16 +6,13 @@
     </div>
   </section>
 
-  <!-- Start trends indicator section -->
   <section class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 sm:gap-16 mb-10">
     <Trend xcolor="red" title="Income" :amount="incomeTotal" :last-amount="previousIncomeTotal" :loading="pending" />
     <Trend xcolor="red" title="Expense" :amount="expenseTotal" :last-amount="previousExpenseTotal" :loading="pending" />
     <Trend xcolor="red" title="Investments" :amount="3000" :last-amount="3000" :loading="pending" />
     <Trend xcolor="red" title="Savings" :amount="3700" :last-amount="6000" :loading="pending" />
   </section>
-  <!-- End trends indicator section -->
 
-  <!-- start transaction summory and tools section -->
   <section class="flex justify-between mb-10">
     <div>
       <h2 class="text-2xl font-extrabold">Transactions</h2>
@@ -26,38 +23,30 @@
       <UButton @click="isOpen = true" icon="i-heroicons-plus-circle" color="white" variant="solid" label="Add"/>
     </div>
   </section>
-  <!-- end transaction summory and tools section -->
 
-  <!-- Start transactions section -->
   <section v-if="!pending" class="space-y-10">
   <div
     v-for="(transactionsOnDay, date) in byDate"
     :key="date"
     class="p-6 bg-gray-50 rounded-lg shadow-md hover:shadow-lg transition-shadow">
     
-    <!-- Keep the Date Summary as is -->
     <DailyTransactionSummary
       :date="date"
       :transactions="transactionsOnDay"
-      class="text-lg font-bold text-gray-800 mb-4"
-    />
-
-    <!-- List of Transactions -->
+      class="text-lg font-bold text-gray-800 mb-4"/>
     <Transaction
       v-for="transaction in transactionsOnDay"
       :key="transaction.id"
       :transaction="transaction"
       class="p-4 bg-white rounded-lg shadow-sm hover:shadow-md transition-shadow border-l-4 border-blue-500 mb-4"
       @deleted="refresh()"
-      @edited="refresh()"
-    />
+      @edited="refresh()"/>
   </div>
 </section>
 
   <section v-else>
     <USkeleton class="h-8 w-full mb-2" v-for="i in 4" :key="i"/>
   </section>
-  <!-- End transaction section -->
 </template>
 
 <script setup>
