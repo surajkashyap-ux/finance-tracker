@@ -5,7 +5,7 @@
     </template>
 
     <form @submit.prevent="handleLogin">
-      <UFormGroup label="Email" name="email" class="mb-4" :required="true" help="You'll receive an email with the confirmation link">
+      <UFormGroup label="Email" name="email" class="mb-4" :required="true" help="You'll receive an email with the magic link">
         <UInput type="email" placeholder="Email" required v-model="email"/>
       </UFormGroup>
       
